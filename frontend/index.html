@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChainScope | EVM Blockchain Transaction Explorer & Indexer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-brand">
+      <div class="brand-logo">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+          <polyline points="2 17 12 22 22 17"/>
+          <polyline points="2 12 12 17 22 12"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="brand-title">ChainScope <span class="badge-network">EVM MAINNET</span></h1>
+        <p class="brand-sub">Real-Time Block & Transaction Indexer</p>
+      </div>
+    </div>
+
+    <!-- Search Engine -->
+    <div class="search-container">
+      <form id="searchForm" class="search-form">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="searchInput" placeholder="Search by Address (0x...), Tx Hash, or Block Number..." class="search-input" required>
+        <button type="submit" class="search-submit">Search</button>
+      </form>
+    </div>
+  </header>
+
+  <!-- Network Metrics Bar -->
+  <section class="metrics-bar">
+    <div class="metric-item">
+      <span class="m-label">LATEST BLOCK</span>
+      <span class="m-val" id="mLatestBlock">#0</span>
+    </div>
+    <div class="metric-item">
+      <span class="m-label">BASE GAS FEE</span>
+      <span class="m-val highlight" id="mBaseFee">0.0 Gwei</span>
+    </div>
+    <div class="metric-item">
+      <span class="m-label">AVG GAS PRICE</span>
+      <span class="m-val" id="mGasPrice">0.0 Gwei</span>
+    </div>
+    <div class="metric-item">
+      <span class="m-label">GAS UTILIZATION</span>
+      <span class="m-val" id="mGasUtil">0%</span>
+    </div>
+    <div class="metric-item">
+      <span class="m-label">TOTAL INDEXED TXS</span>
+      <span class="m-val" id="mTotalTxs">0</span>
+    </div>
+  </section>
+
+  <!-- Main Explorer View -->
+  <main class="explorer-body">
+    <!-- Home Feed (Blocks & Txs) -->
+    <div id="homeView" class="split-view">
+      <!-- Latest Blocks Column -->
+      <section class="feed-column">
+        <div class="column-title-bar">
+          <h2>Latest Mined Blocks</h2>
+          <span class="live-tag">LIVE FEED</span>
+        </div>
+        <div class="feed-list" id="blocksFeed">
+          <!-- Populated dynamically -->
+        </div>
+      </section>
+
+      <!-- Latest Transactions Column -->
+      <section class="feed-column">
+        <div class="column-title-bar">
+          <h2>Recent Verified Transactions</h2>
+          <span class="live-tag">MEMPOOL SYNC</span>
+        </div>
+        <div class="feed-list" id="txsFeed">
+          <!-- Populated dynamically -->
+        </div>
+      </section>
+    </div>
+
+    <!-- Detail View (Block, Tx, or Address) -->
+    <div id="detailView" class="detail-container hidden">
+      <div class="detail-top-nav">
+        <button class="btn btn-back" id="btnBackToHome">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          Back to Live Feed
+        </button>
+        <span class="detail-breadcrumb" id="detailBreadcrumb">Transaction Details</span>
+      </div>
+      <div id="detailContent" class="detail-card">
+        <!-- Injected via app.js -->
+      </div>
+    </div>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
